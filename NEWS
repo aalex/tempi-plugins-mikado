@@ -1,0 +1,315 @@
+Tempi release notes
+===================
+
+Tempi 0.3.2 (2013-??-??)
+-------------------------
+This release is a developer snapshot in the experimental 0.3 series.
+
+New features:
+
+* (none)
+
+Bugs fixed:
+
+* (none)
+
+
+Tempi 0.3.0 (2013-01-28)
+-------------------------
+This release is a developer snapshot in the experimental 0.3 series.
+
+New features:
+
+* Slightly more doc aboud saving/loading graphs
+* Add Wrapper::getNodeDocumentation
+* Add Wrapper::isConnected
+* Add Wrapper::listConnections
+* Add doc string for counter's increment attribute
+* Support receiving 2-char MIDI events
+* Add base.serial.device node type
+* Supports Blob atoms, thanks to libatom
+* Add TypesFilter so that inlets can filter message by their types
+* Rename base.math.expr to base.math.jsexpr
+* Add base.math.luaexpr
+
+Bugs fixed:
+
+* Decrease verbosity in serializer and midiroutenode
+* fix Wrapper::getNodeTypeName. It used to return the doc instead of the type name.
+* Inlets can cast ints to floats, and floats to ints
+* Attributes can cast ints to floats, and floats to ints
+* Fix node types in some example xml files
+* Node.message was not casting the messages
+
+
+Tempi 0.2.0 (2012-12-28)
+-------------------------
+This release is an official version in the stable 0.2 series.
+
+New features:
+
+* add Wrapper::sleep()
+* add Wrapper::waitUntilAllNodesAreInitiated()
+* add split.xml example
+
+Bugs fixed:
+
+* Temporarily disable libmapper nodes since them fail to build.
+
+
+Tempi 0.1.20 (2012-11-08)
+-------------------------
+This release is a developer snapshot in the 0.1 series.
+
+New features:
+
+* pass Pad* to its triggered signal
+* fix bug with initial count in counter node
+* allow to cast float to int for attributes
+* add entity methods which return right away with a message
+* midi nodes can list devices as a method
+* base.flow.split node type
+* base.os.shell
+* base.edit.grapheditor
+* boolean printed as text "true" of "false"
+
+
+Bugs fixed:
+
+* NOTICE log message were never displayed
+* decrease verbosity of counter
+* fix segfault when node type name not found in the serializer
+* fix exception thrown when wrong attribute type in tempi-launch
+* do not segfault - but fail - when return array from base.math.expr javascript scripts
+
+
+Tempi 0.1.18 (2012-10-22)
+-------------------------
+This release is a developer snapshot in the 0.1 series.
+
+New features:
+* Update spatosc API to 0.4
+* Add API version to name of plugins shared libraries
+* Rename sampler.sampler to sampler.simple
+* rename miller to tempi-graph-viewer
+* tempi-graph-viewer: F1 shows help
+* move fsm utilities to another library: libbehave
+* Outlet and Inlet are now children of Pad
+
+Bugs fixed:
+* tempi-osc-forward: fix node type names
+* Fix 100% CPU usage in tempi-launch and miller
+* Miller: Fix the bad connection position
+* remove dependency to rtmidi. Now using portmidi.
+* fix memory leak in midi input and output nodes
+
+
+Tempi 0.1.16 (2012-07-27)
+-------------------------
+This release is a developer snapshot in the 0.1 series.
+
+New features:
+* add "base." prefix to all node types
+* delete base.appsink
+* rename many node type names:
+  * rename base.any       -> base.flow.any
+  * rename base.append    -> base.flow.append
+  * rename base.cast      -> base.flow.cast
+  * rename base.counter   -> base.flow.counter
+  * rename base.delay     -> base.flow.delay
+  * rename base.dict      -> base.data.dict
+  * rename base.loadmess  -> base.flow.loadmess
+  * rename base.metro     -> base.time.metro
+  * rename base.nop       -> base.flow.nop
+  * rename base.prepend   -> base.flow.prepend
+  * rename base.print     -> base.flow.print
+  * rename base.route     -> base.flow.route
+  * rename base.spatosc   -> base.osc.spatosc
+  * rename base.spigot    -> base.flow.spigot
+  * etc.
+* more verbose attr loading from XML
+* Do not print common inlets/outlets/attributes in tempi-inspect, nor when there is no method
+* note about RtMidi's bug
+* add a lunch script for the example for tempi-osc-looper
+* osc-looper: add pd example patch
+* tempi-midi-looper: add background image and prettify
+* make midi-looper multi-track
+
+
+Bugs fixed:
+* less strict gcc flags
+* Fix a bug when generating man pages without a X11 display.  (tempi-draw: clutter_init after parsing options)
+* XML: rename node "id" attribute to "name"
+* fix rst markup in README
+* osc-looper: fix short options name clash
+
+New prototypes and documentation:
+* add MillerConnection actor type
+  * show nodes with inlets and outlets, can drag nodes, zoom canvas, toggle fullscreen.
+  * node position is saved as ,fff
+* add a non-working serial prototype
+* add a gsoap prototype
+* mapperinputnode now at least compiles
+
+
+Tempi 0.1.14 (2012-05-28)
+-------------------------
+This release is a developer snapshot in the 0.1 series.
+
+Bugs fixed:
+
+* Fix STK CFLAGS. Depend on RTMIDI now that it's split. (in Ubuntu 12.04 and up)
+* Use boost.m4 macros
+
+
+Tempi 0.1.12 (2012-03-29)
+-------------------------
+This release is a developer snapshot in the 0.1 series.
+
+New features:
+
+* Support abstractions: [abs.abstraction], [abs.inlet], [abs.outlet]
+* New sampler node types: [sampler.read], [sample.write], [sampler.sample]
+* New string node types: [string.join], [string.characters], [string.split]
+* Rename [midi.send] to [midi.output] and [midi.receive] to [midi.input]
+* New MIDI nodes: [midi.{note,program}]
+* New OSC nodes: [osc.{prepend,route}]
+* New 3D node: [3d.angle]
+* New math node: [math.map]
+* Nodes can access the regions owned by their scheduler.
+* Add NameAllocator (not used yet)
+* New node types: [music.nearest.note], [music.monodic], [base.dict], [random.int], [random.drunk]
+* Base plugins are now dynamically loaded with Loader, a singleton.
+* New pads: __call__ and __return__
+* Can get/set/list attributes via __attr__ inlet/outlet
+
+Bugs fixed:
+
+* Move plugins-base's tests and core's tests to their directory
+* Fix rst format output by utilities
+* Refactor math nodes using inheritance
+* New examples: oscreceive.xml, toonloop-music.xml, abs.xml, strings.xml
+* Dependencies not mandatory anymore: Clutter, liblo, GLib, spatosc
+
+
+Tempi 0.1.10 (2012-02-19)
+-------------------------
+This release is a developer snapshot in the 0.1 series.
+
+New features:
+
+* Save and load Graph to and from XML.
+* Add examples: route.xml, counter.xml, etc.
+* New node types: [base.delay], [base.spigot], [base.route], [base.prepend], [base.append], [base.spatosc], [base.loadmess], [base.cast], [math.deg2rad]
+* New command-line tools: tempi-launch, tempi-inspect
+* Add methods to Node: removeOutlet, listInlets, listOutlets
+* Add NodeSignal (especially for when deleting a pad)
+* rename "attributes" inlet to "__attr__"
+* more doc for many nodes
+* Add abstract classes: Pad, NamedObject, DocumentedObject, NamedObjectMap
+* Add in utils: argumentToString, appendArgumentFromString, castMessage, isValidType
+* Add Logger with various log levels
+
+Bugs fixed:
+
+* Fix calculation in ms <-> ns conversion 
+* Fix timing in [base.metro]
+* Update license header to LGPL, as advertized
+* Make some libraries non-necessary: Clutter, GLib, spatosc
+
+
+Tempi 0.1.8 (2012-01-12)
+------------------------
+This release is a developer snapshot in the 0.1 series.
+
+New features:
+
+* New node types: [math.+], [math.-], [math.<], [math.>], [math./], [math.*], [math.==], [math.!=]
+* New node types: [midi.route]
+* Allow non type-strict attributes
+* Rename properties to attributes
+* Rename sink to inlet, source to outlet
+* Add Message::prependMessage()
+* Remove node arguments: only attributes now.
+* Inlets and outlets are now named, not indexed.
+
+
+Tempi 0.1.6 (2011-12-19)
+------------------------
+This release is a developer snapshot in the 0.1 series.
+
+New features:
+
+* Read multiple events at once from a Region
+* Add Node::init() to move node initialization routines out of the constructor.
+
+Bugs fixed:
+
+* Fix timing issue with first event recorded in a Region
+
+
+Tempi 0.1.4 (2011-12-14)
+------------------------
+This release is a developer snapshot in the 0.1 series.
+
+New features:
+
+* New atom types: pointer, unsigned char
+* New command-line utilities: midilooper
+* New namespaces: base, osc, midi, sampler, mapping, table
+* New nodes types: base.print, base.prepend, sampler.sampler, base.appsink, base.any, base.counter, base.metro, midi.send, midi.receive
+* New prototypes: module loader, i18n, XML state saving files
+* Add Message::prepend*
+* Add classes Scheduler, ThreadedScheduler, Library
+* Add functions utils::stringsMatch, librarytools::loadLibrary
+* Add man pages
+* Add method ConcurrentQueue::clear()
+* Add node arguments
+* Add operator ostream for Graph and Graph
+* Add the Library classes.
+* Implement registerTypeT<class>(name)
+* Rename utility "tempi" to "tempi-draw"
+
+Bugs fixed:
+
+* Move executables' source code to subdirectories
+* Remove deprecated property.{h,cpp} files
+* midilooper: do not list our own ports
+* midilooper: do not crash in case of bad option
+* Graph::getNode returns a shared pointer, not a raw one anymore
+
+
+Tempi 0.1.2 (2011-10-14)
+------------------------
+This release is a developer snapshot in the 0.1 series.
+
+New features:
+
+* The osc-forward command-lineutility.
+* OscReceiverNode and OscSenderNode
+* can instanciate Message with va_list
+* NopNode
+* Graph uses a NodeFactory
+* Add ::ptr typedef members to many classes
+* All nodes have at least one inlet
+* The set messages sets the properties. Add Node::getPropertiesNames
+* Add Message::cloneRange
+* Node::processMessage is called with inlet as arg
+* Implement properties with Message objects
+* Can now disconnect pads
+* Add more version macros
+
+Bugs fixed:
+
+* Tests are silent
+* Moved specific nodes to subdirectories
+* Fix bad exception type
+* Remove types.h. Compiling it used to take way too much CPU
+* Add virtual destructor to all abstract classes
+* Update README to be valid rst
+
+
+Tempi 0.1.0 (2011-09-02)
+-------------------------
+This is the first developer snapshot of Tempi.
+
